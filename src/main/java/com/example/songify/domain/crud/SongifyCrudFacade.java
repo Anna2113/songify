@@ -20,6 +20,7 @@ public class SongifyCrudFacade {
     private final GenreAdder genreAdder;
     private final SongAdder songAdder;
     private final AlbumAdder albumAdder;
+    private final ArtistAssigner artistAssigner;
 
     public ArtistDto addArtist(ArtistRequestDto dto) {
         return artistAdder.addArtist(dto.name());
@@ -36,5 +37,17 @@ public class SongifyCrudFacade {
     public AlbumDto addAlbumWithSong(AlbumRequestDto dto){
         return albumAdder.addAlbum(dto.songId(), dto.title(), dto.releaseDate());
     }
+
+    public void addArtistToAlbum(Long artistId, Long albumId){
+        artistAssigner.addArtistToAlbum(artistId, albumId);
+    }
+
+    public ArtistDto addArtistWithDefaultAlbumAndSong(ArtistRequestDto dto){
+        return artistAdder.addArtistWithDefaultAlbumAndSong(dto);
+    }
+
+    //TODO: Dodanie piosenki do istniejącego artysty.
+
+
 
 }
