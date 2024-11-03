@@ -19,7 +19,7 @@ class AlbumAdder {
 
     AlbumDto addAlbum(final Set<Long> songsId, final String title, final Instant releaseDate) {
         Set<Song> songs = songsId.stream()
-                .map(songRetriever::findSongById)
+                .map(songRetriever::findById)
                 .collect(Collectors.toSet());
 
         Album album = new Album();
