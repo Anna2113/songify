@@ -45,6 +45,6 @@ For each object you can perform different functions. For example:
 * You can get album with songs.
 * You can get album with songs and artists.
 
-* The application is still under development with new functionalities.
+## The application is still under development with new functionalities.
 
   
