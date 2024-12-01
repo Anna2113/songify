@@ -13,8 +13,8 @@ After cloaning the application, we run it in any idea such as IntelliJ IDEA Ulti
 can use other relational database. Each database you have to configuration.
 
 Example Docker Configuration:
-- You have to create docker-compose.yml file.
-- Next you should paste exemplary code:
+1. You have to create docker-compose.yml file.
+2. Next you should paste exemplary code:
    version: "3.8"
    services:
       db:
