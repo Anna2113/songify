@@ -15,48 +15,12 @@ can use other relational database. Each database you have to configuration.
 Example Docker Configuration:
 1. You have to create docker-compose.yml file.
 2. Next you should paste exemplary code:
-   version: "3.8"
-   services:
-      db:
-        image: postgres
-        container_name: your configuration
-        restart: always
-        ports:
-          - "your configuration"
-        environment:
-          POSTGRES_USER: your configuration
-          POSTGRES_PASSWORD: your configuration
-          POSTGRES_DB: your configuration
-        volumes:
-          - local_pgdata:/var/lib/postgresql/data
-      pgadmin:
-        image: dpage/pgadmin4
-        container_name: your configuration
-        restart: always
-        ports:
-          - "your configuration"
-        environment:
-          PGADMIN_DEFAULT_EMAIL: your configuration
-          PGADMIN_DEFAULT_PASSWORD: your configuration
-        volumes:
-          - pgadmin-data:/var/lib/pgadmin
 
-    volumes:
-      local_pgdata:
-      pgadmin-data:
+  <img src="Images/docker-compose.png" alt="screen1" width="400" height="300">
    
 3. Run docker-compose.yml
 4. Next you have to cretae your database in postgres.
 5. And next you should configuration database in IntelliJ IDEA Ultimate.
 6. Example application.properties file configuration:
-
-spring.datasource.url= your configuration
-spring.datasource.username= your configuration
-spring.datasource.password= your configuration
-
-spring.datasource.hikari.connection-timeout=20000
-spring.datasource.hikari.maximum-pool-size=5
-
-spring.jpa.hibernate.ddl-auto=create-drop
-spring.jpa.show-sql=true
+<img src="Images/applicationProperties" alt="screen2" width="400" height="300">
   
