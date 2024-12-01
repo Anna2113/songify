@@ -4,5 +4,5 @@ import com.example.songify.domain.crud.dto.AlbumDto;
 
 import java.util.List;
 
-public record AllAblumsDto(List<AlbumDto> albums) {
+public record AllAlbumsDto(List<AlbumDto> albums) {
 }

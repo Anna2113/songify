@@ -1,6 +1,7 @@
 package com.example.songify.domain.crud;
 
 import com.example.songify.domain.crud.dto.AlbumDto;
+import com.example.songify.domain.crud.dto.AlbumWithSongsAndArtistsDto;
 import com.example.songify.domain.crud.dto.AlbumWithSongsDto;
 import com.example.songify.domain.crud.dto.SongDto;
 import com.example.songify.domain.crud.exception.AlbumNotFoundException;
@@ -49,17 +50,52 @@ class AlbumRetriever {
 
         Set<Song> songs = album.getSongs();
 
-        Set<SongDto> allSongs = songs.stream()
-                .map(song -> new SongDto(
+        Set<SongDtoWithoutArtists> allSongs = songs.stream()
+                .map(song -> new SongDtoWithoutArtists(
                         song.getId(),
                         song.getName()
                 ))
                 .collect(Collectors.toSet());
 
+//        Set<SongDto> allSongs = songs.stream()
+//                .map(song -> new SongDto(
+//                        song.getId(),
+//                        song.getName(),
+//                        song.getArtist().toString()
+//                ))
+//                .collect(Collectors.toSet());
+
         AlbumDto albumDto = new AlbumDto(album.getId(), album.getTitle());
 
         return new AlbumWithSongsDto(albumDto, allSongs);
 
+
+    }
+
+    AlbumWithSongsAndArtistsDto findAlbumByIdWithSongsAndArtists(final Long id) {
+        Album album = albumRepository.findAllSongsAndArtistsByAlbumId(id)
+                .orElseThrow(() -> new AlbumNotFoundException("Album with id: " + id + " not found"));
+
+        Set<Song> songs = album.getSongs();
+        Set<SongDto> allSongs = songs.stream()
+                .map(song -> new SongDto(
+                        song.getId(),
+                        song.getName(),
+                        song.getArtist().getName()
+                ))
+                .collect(Collectors.toSet());
+
+//        Set<Artist> artists = album.getArtists();
+//        Set<ArtistDto> allArtists = artists.stream()
+//                .map(artist -> new ArtistDto(
+//                        artist.getId(),
+//                        artist.getName()
+//                ))
+//                .collect(Collectors.toSet());
+//
+        AlbumDto albumDto = new AlbumDto(album.getId(), album.getTitle());
+
+        return new AlbumWithSongsAndArtistsDto(albumDto, allSongs);
 
     }
 }

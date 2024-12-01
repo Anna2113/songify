@@ -1,7 +1,10 @@
 package com.example.songify.domain.crud;
 
+import com.example.songify.domain.crud.dto.ArtistDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -16,4 +19,6 @@ class ArtistAssigner {
         Album album = albumRetriever.findById(albumId);
         artist.addAlbum(album);
     }
+
+
 }

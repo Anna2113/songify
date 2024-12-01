@@ -3,9 +3,8 @@ package com.example.songify.infrastructure.crud.album;
 import com.example.songify.domain.crud.SongifyCrudFacade;
 import com.example.songify.domain.crud.dto.AlbumDto;
 import com.example.songify.domain.crud.dto.AlbumRequestDto;
+import com.example.songify.domain.crud.dto.AlbumWithSongsAndArtistsDto;
 import com.example.songify.domain.crud.dto.AlbumWithSongsDto;
-import com.example.songify.domain.crud.dto.SongDto;
-import com.example.songify.infrastructure.crud.song.AllSongsDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -32,9 +30,9 @@ class AlbumController {
     }
 
     @GetMapping
-    ResponseEntity<AllAblumsDto> getAlbums(){
+    ResponseEntity<AllAlbumsDto> getAlbums(){
         List<AlbumDto> allAlbums = songifyCrudFacade.findAllAlbums();
-        AllAblumsDto albums = new AllAblumsDto(allAlbums);
+        AllAlbumsDto albums = AlbumControllerMapper.mapFromAlbumToAllAlbumsDto(allAlbums);
         return ResponseEntity.ok(albums);
     }
 
@@ -44,9 +42,15 @@ class AlbumController {
         return ResponseEntity.ok(album);
     }
 
-    @GetMapping("/album/{id}")
+    @GetMapping("/album/songs/{id}")
     ResponseEntity<AlbumWithSongsDto> getAlbumWithSongs(@PathVariable Long id){
-        AlbumWithSongsDto albumByIdWithSongs = songifyCrudFacade.findAlbymByIdWithSongs(id);
+        AlbumWithSongsDto albumByIdWithSongs = songifyCrudFacade.findAlbumByIdWithSongs(id);
         return ResponseEntity.ok(albumByIdWithSongs);
+    }
+
+    @GetMapping("/album/songs/artists/{id}")
+    ResponseEntity<AlbumWithSongsAndArtistsDto> getAlbumWithSongsAndArtists(@PathVariable Long id){
+        AlbumWithSongsAndArtistsDto albumByIdWithSongsAndArtists = songifyCrudFacade.findAlbumByIdWithSongsAndArtists(id);
+        return ResponseEntity.ok(albumByIdWithSongsAndArtists);
     }
 }

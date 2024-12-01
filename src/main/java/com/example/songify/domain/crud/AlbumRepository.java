@@ -2,6 +2,7 @@ package com.example.songify.domain.crud;
 
 import com.example.songify.domain.crud.dto.AlbumDto;
 import com.example.songify.domain.crud.dto.SongDto;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +23,34 @@ interface AlbumRepository extends Repository<Album, Long> {
     @Query(""" 
             SELECT a FROM Album a
             INNER JOIN FETCH a.songs songs
-            WHERE a.id = :id""")
+            WHERE a.id = :id
+            """)
     Optional<Album> findAllSongsByAlbumId(Long id);
+
+    @Query("""
+    SELECT a FROM Album a
+    INNER JOIN FETCH a.songs songs
+    WHERE a.id = :id
+    """)
+    Optional<Album> findAllSongsAndArtistsByAlbumId(Long id);
+
+    @Query("""
+            SELECT a FROM Album a
+            INNER JOIN FETCH a.artists artists
+            WHERE a.id = :id
+            """)
+    Optional<Album> findAllArtistsByAlbumId(Long id);
+
+    @Query("""
+            SELECT a FROM Album a 
+            INNER JOIN FETCH Artist artists
+            WHERE artists.id = :id
+            """)
+    Set<Album> findAllAlbumsByArtistId(@Param("id") Long id);
+
+
+    @Modifying
+    @Query("DELETE FROM Album  a WHERE a.id in :albumsId")
+    void deleteByIdIn(Set<Long> albumsId);
+
 }

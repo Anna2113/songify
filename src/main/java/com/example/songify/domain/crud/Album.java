@@ -45,8 +45,13 @@ class Album extends BaseEntity {
     @ManyToMany(mappedBy = "albums", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Artist> artists = new HashSet<>();
 
+    Album(final Long id, final String title) {
+        this.id = id;
+        this.title = title;
+    }
+
     void addSongToAlbum(final Song song) {
-        this.songs.add(song);
+        songs.add(song);
     }
 
     void addSongToAlbum(final Set<Song> songs) {
@@ -61,4 +66,5 @@ class Album extends BaseEntity {
     void addArtist(final Artist artist) {
         artists.add(artist);
     }
+
 }

@@ -36,4 +36,9 @@ class GenreRetriever {
 
     }
 
+    void existsById(final Long id) {
+        if(!genreRepository.existsById(id)){
+            throw new GenreNotFoundException("Genre with id: " + id + " not found");
+        }
+    }
 }
