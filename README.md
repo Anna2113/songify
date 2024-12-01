@@ -22,5 +22,5 @@ Example Docker Configuration:
 4. Next you have to cretae your database in postgres.
 5. And next you should configuration database in IntelliJ IDEA Ultimate.
 6. Example application.properties file configuration:
-<img src="Images/applicationProperties.PNG" alt="screen2" width="400" height="300">
+<img src="Images/applicationProperties.PNG" alt="screen2" width="400" height="350">
   
