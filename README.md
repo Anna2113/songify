@@ -16,7 +16,7 @@ Example Docker Configuration:
 1. You have to create docker-compose.yml file.
 2. Next you should paste exemplary code:
 
-  <img src="Images/docker-compose.png" alt="screen1" width="400" height="300">
+  <img src="Images/docker-compose.PNG" alt="screen1" width="400" height="300">
    
 3. Run docker-compose.yml
 4. Next you have to cretae your database in postgres.
